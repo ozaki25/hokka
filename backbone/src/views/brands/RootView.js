@@ -1,10 +1,11 @@
 import _ from 'underscore'
 import Backbone from 'backbone'
 import HeaderView from '../HeaderView'
-import HelloView from './HelloView'
+import IndexView from './IndexView'
+import Brands from '../../collections/Brands'
 
 export default class RootView extends Backbone.Marionette.View {
-    constructor(options) {
+    constructor(options = {}) {
         super(
             _.defaults({}, options, {
                 template: _.template(`
@@ -26,6 +27,6 @@ export default class RootView extends Backbone.Marionette.View {
         this.getRegion('headerRegion').show(new HeaderView())
     }
     renderMain() {
-        this.getRegion('mainRegion').show(new HelloView())
+        this.getRegion('mainRegion').show(new IndexView({ collection: new Brands() }))
     }
 }
