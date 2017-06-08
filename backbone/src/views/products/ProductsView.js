@@ -1,12 +1,12 @@
 import _ from 'underscore'
 import Backbone from 'backbone'
-import BrandView from './BrandView'
+import ProductView from './ProductView'
 
-export default class BrandsView extends Backbone.Marionette.CollectionView {
+export default class ProductsView extends Backbone.Marionette.CollectionView {
     constructor(options = {}) {
         super(
             _.defaults({}, options, {
-                childView: BrandView,
+                childView: ProductView,
             })
         )
     }

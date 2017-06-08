@@ -1,29 +1,29 @@
 import _ from 'underscore'
 import Backbone from 'backbone'
 
-export default class BrandView extends Backbone.Marionette.View {
+export default class ProductView extends Backbone.Marionette.View {
     constructor(options = {}) {
         super(
             _.defaults({}, options, {
                 className: 'col-xs-6 col-sm-4 col-md-3',
                 template: _.template(`
                     <div class="thumbnail">
-                       <a href="#" class="to-products-link">
+                       <a href="#" class="link-to-product">
                          <img src="<%- logo %>" alt="<%- name %>">
                        </a>
                     </div>
                 `),
                 ui: {
-                    toProductsLink: '.to-products-link'
+                    linkToProduct: '.link-to-product'
                 },
                 events: {
-                    'click @ui.toProductsLink': 'onClickToProductsLink'
-                },
+                    'click @ui.linkToProduct': 'onClickLinkToProduct'
+                }
             })
         )
     }
-    onClickToProductsLink(e) {
+    onClickLinkToProduct(e) {
         e.preventDefault()
-        Backbone.history.navigate(`/b/brands/${ this.model.id }/products`, { trigger: true })
+        Backbone.history.navigate(`/b/brands/${ this.model.get('brandId') }/products/${ this.model.id }`, { trigger: true })
     }
 }
